@@ -5,6 +5,8 @@ import Animation from "./Components/Animation";
 import Horror from "./Components/Horror";
 import Nav from "./Components/Nav";
 import Popular from "./Components/Popular";
+import Searched from "./Components/Searched";
+// import Test from "./Components/Test";
 
 const App = () => {
 
@@ -28,25 +30,53 @@ const App = () => {
     setAnimation(Animation_movies.results);
   }
 
+  const fetchGenres = async () => {
+    const fetch_data_genres = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=2f3659e2d055859a0ba3da6e671f91f5&language=en-US');
+    const Genres = await fetch_data_genres.json();
+    setGenres(Genres.genres)
+  }
+
+  const fetch_movies_by_genre = async (e) => {
+    console.log(e);
+
+    const fetch_data_by_genre = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=2f3659e2d055859a0ba3da6e671f91f5&with_genres=`+ e );
+    const by_genre = await fetch_data_by_genre.json();
+    console.log(by_genre.results);
+    setMovieByGenre(by_genre.results);
+  }
 
     
   const [ popular , setPopular ] = useState([]);
   const [ sHorror , setHorror] = useState([]);
   const [ animation , setAnimation] = useState([]);
-
-
+  const [ genreEntered , setGenreEntered ] = useState('')
+  const [ genres , setGenres ] = useState([])
+  const [ targetedGenre , setTargetedGenre ] = useState([])
+  const [ movies_by_genre , setMovieByGenre ] = useState([])
+ 
+  const getinputdata = (e) => {
+    setGenreEntered(e)
+    const filtred_genre = genres.filter( (e) => e.name.toLowerCase() === genreEntered.toLowerCase() )
+    setTargetedGenre(filtred_genre)
+    // console.log(targetedGenre);
+  }
 
   useEffect( () => {
     fetchPopular()
     fetchHorror()
     fetchAnimation()
+    fetchGenres()
+    // fetch_movies_by_genre()
+
   } , [] )
 
   return ( 
     <>
-         <Nav/>
+         <Nav data={getinputdata} gg={fetch_movies_by_genre} genre_id={targetedGenre} />
+         
           <Routes>
-              <Route index element={  <Popular  data={popular}/>  } />
+              <Route path="/" element={  <Searched data={movies_by_genre}/>  } />
+              <Route path="/Search" element={ <Searched  data={movies_by_genre} /> } />
               <Route path="/About" element={ <About/> } />
               <Route  path="/Popular" element={  <Popular data={popular}/>  } >
               </Route>
