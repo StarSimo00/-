@@ -43,7 +43,7 @@ const App = () => {
   } , [] )
 
   return ( 
-    <Router basename="Movie-Api">
+    <>
          <Nav/>
           <Routes>
               <Route index element={  <Popular  data={popular}/>  } />
@@ -53,7 +53,7 @@ const App = () => {
               <Route path="/Horror" element={ <Horror data={sHorror} />  }  />
               <Route path="/Animation"  element={ <Animation data={animation}/> }  />
           </Routes>
-    </Router>
+    </>
    );
 }
  
