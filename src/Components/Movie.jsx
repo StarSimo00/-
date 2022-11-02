@@ -1,6 +1,6 @@
 const Movie = ({data}) => {
     return ( 
-        <div className="container col-md-6 g-2 " key={data.id}>
+        <div className="container col-md-4 g-2 " key={data.id}>
             <div className="card text-bg-dark">
                 <img src={'http://image.tmdb.org/t/p/original'+ data.backdrop_path } className="card-img zoom-in" alt="g"/>
             <div className="card-img-overlay p-4 test">
