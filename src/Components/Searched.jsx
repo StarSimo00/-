@@ -13,7 +13,7 @@ const Searched = ({data}) => {
             <>
             <div className="container p-2 animate__animated animate__fadeIn">
                 <h2 className="text-white m-3 "> </h2>
-                <div className="container row ms-1">
+                <div className="container row ms-1 ">
                     { data.map( (movie) => {
                        
                        return <Movie key={movie.id} data={movie} /> ;
