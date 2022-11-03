@@ -69,7 +69,7 @@ const App = () => {
          <Nav data={getinputdata}/>
       
           <Routes>
-              <Route path="/" element={  <Searched data={movies_by_genre}/>  } />
+              <Route path="/-" element={  <Searched data={movies_by_genre}/>  } />
               <Route path="/Search" element={ <Searched  data={movies_by_genre} /> } />
               <Route path="/About" element={ <About/> } />
               <Route path="/Popular" element={ <Popular data={popular}/> } />
