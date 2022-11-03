@@ -1,17 +1,16 @@
 import { NavLink } from "react-router-dom";
 
-const Nav = ({data , gg , genre_id}) => {
+const Nav = ({data}) => {
 
 
     const Searched_Genre = document.getElementById('hh');
-
     return ( 
         <div className="animate__animated animate__fadeIn">
         <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
         <a className="navbar-brand">Movie Api Site</a>
         <input type="text" id="hh" />
-        <button className="btn btn-primary" onClick={ (e)=> {  data( Searched_Genre.value ) ; gg(genre_id[0].id) }  }> Search </button>
+        <button className="btn btn-primary" onClick={ (e)=> {  data( Searched_Genre.value ) ; }  }> Search </button>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
         </button>

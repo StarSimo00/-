@@ -37,11 +37,8 @@ const App = () => {
   }
 
   const fetch_movies_by_genre = async (e) => {
-    console.log(e);
-
     const fetch_data_by_genre = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=2f3659e2d055859a0ba3da6e671f91f5&with_genres=`+ e );
     const by_genre = await fetch_data_by_genre.json();
-    console.log(by_genre.results);
     setMovieByGenre(by_genre.results);
   }
 
@@ -49,16 +46,15 @@ const App = () => {
   const [ popular , setPopular ] = useState([]);
   const [ sHorror , setHorror] = useState([]);
   const [ animation , setAnimation] = useState([]);
-  const [ genreEntered , setGenreEntered ] = useState('')
   const [ genres , setGenres ] = useState([])
-  const [ targetedGenre , setTargetedGenre ] = useState([])
   const [ movies_by_genre , setMovieByGenre ] = useState([])
  
+
+
+
   const getinputdata = (e) => {
-    setGenreEntered(e)
-    const filtred_genre = genres.filter( (e) => e.name.toLowerCase() === genreEntered.toLowerCase() )
-    setTargetedGenre(filtred_genre)
-    // console.log(targetedGenre);
+    const filtred_genre = genres.filter( (f) => f.name.toLowerCase() === e.toLowerCase() )
+    try{fetch_movies_by_genre(filtred_genre[0].id)}catch{console.log('getinput fct : no data recieved')}
   }
 
   useEffect( () => {
@@ -66,20 +62,17 @@ const App = () => {
     fetchHorror()
     fetchAnimation()
     fetchGenres()
-    // fetch_movies_by_genre()
-
   } , [] )
 
   return ( 
     <>
-         <Nav data={getinputdata} gg={fetch_movies_by_genre} genre_id={targetedGenre} />
-         
+         <Nav data={getinputdata}/>
+      
           <Routes>
               <Route path="/" element={  <Searched data={movies_by_genre}/>  } />
               <Route path="/Search" element={ <Searched  data={movies_by_genre} /> } />
               <Route path="/About" element={ <About/> } />
-              <Route  path="/Popular" element={  <Popular data={popular}/>  } >
-              </Route>
+              <Route path="/Popular" element={ <Popular data={popular}/> } />
               <Route path="/Horror" element={ <Horror data={sHorror} />  }  />
               <Route path="/Animation"  element={ <Animation data={animation}/> }  />
           </Routes>
