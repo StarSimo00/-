@@ -13,7 +13,7 @@ const Fav_Movies = () => {
                 keys.map( (key) => {
 
                     const data = JSON.parse(localStorage.getItem(key))
-                    return  <Movie data={data} />
+                    return  <Movie data={data} key={data.id} />
                 } )
             
             }
