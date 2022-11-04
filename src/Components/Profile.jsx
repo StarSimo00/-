@@ -20,8 +20,7 @@ const Profile = ({logout}) => {
 
     return ( 
         <>
-
-            <h2 className="text-white d-inline" > Welcome Mr: {UserName}  </h2>
+            <h2 className=" container ms-2 text-white d-inline" > Welcome Mr: {UserName}  </h2>
             <button onClick={ () => logout() } className="btn btn-secondary"> Log Out </button>
             <Fav_Movies/>
         </>

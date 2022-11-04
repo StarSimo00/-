@@ -1,6 +1,7 @@
 import Movie from "./Movie";
 
 const Popular = ({data}) => {
+
     return ( 
         <>
             <div className="container p-2 animate__animated animate__fadeIn">

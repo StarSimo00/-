@@ -11,6 +11,8 @@ import { UserContext } from "./contexts/UserContext";
 
 const App = () => {
 
+
+
   const goto = useNavigate();
 
   const fetchPopular = async () => {
@@ -45,9 +47,6 @@ const App = () => {
   const [ movies_by_Name , setMovieByName ] = useState([])
   const [ UserName , setUser ] = useState(null)
   const [ User , setU ] = useState(null)
- 
-
-
 
   const getinputdataGenre = (e) => {
     const filtred_genre = genres.filter( (f) => f.name.toLowerCase() === e.toLowerCase() )
@@ -71,6 +70,7 @@ const App = () => {
 
   const logout = () => {
     setUser(null)
+    localStorage.clear()
     goto('/Movie-Api' , {replace : true})
   }
 

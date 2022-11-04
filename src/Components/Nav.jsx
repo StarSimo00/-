@@ -30,7 +30,7 @@ const Nav = () => {
             <NavLink className="nav-link" to={'/Profile'}>Profile</NavLink>
             </li>
             : ''    
-        }
+            }
             <li className="nav-item">
             <NavLink className="nav-link" to={'/About'}>About</NavLink>
             </li>
