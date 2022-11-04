@@ -11,7 +11,7 @@ const App = () => {
 
 
   const fetchPopular = async () => {
-      const fetching_data_Popular = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=2f3659e2d055859a0ba3da6e671f91f5&language=en-US&page=2')
+      const fetching_data_Popular = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=2f3659e2d055859a0ba3da6e671f91f5&language=en-US&page=1')
       const popular_movies = await fetching_data_Popular.json();
       setPopular(popular_movies.results);
     } 
