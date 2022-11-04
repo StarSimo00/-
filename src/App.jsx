@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { Route, Router, Routes } from "react-router-dom";
 import About from "./Components/About";
-import Animation from "./Components/Animation";
-import Horror from "./Components/Horror";
 import Nav from "./Components/Nav";
 import Popular from "./Components/Popular";
 import Searched from "./Components/Searched";
-// import Test from "./Components/Test";
+import SearchedByName from "./Components/SearchedByName";
 
 const App = () => {
 
@@ -17,18 +15,6 @@ const App = () => {
       const popular_movies = await fetching_data_Popular.json();
       setPopular(popular_movies.results);
     } 
-
-  const fetchHorror = async () => {
-      const fetching_data_Horror = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=2f3659e2d055859a0ba3da6e671f91f5&with_genres=27')
-      const Horror_movies = await fetching_data_Horror.json();
-      setHorror(Horror_movies.results);
-  }
-
-  const fetchAnimation = async () => {
-    const fetching_data_Animation = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=2f3659e2d055859a0ba3da6e671f91f5&with_genres=16')
-    const Animation_movies = await fetching_data_Animation.json();
-    setAnimation(Animation_movies.results);
-  }
 
   const fetchGenres = async () => {
     const fetch_data_genres = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=2f3659e2d055859a0ba3da6e671f91f5&language=en-US');
@@ -42,39 +28,46 @@ const App = () => {
     setMovieByGenre(by_genre.results);
   }
 
+  const fetch_movies_by_Name = async (e) => {
+    
+    const fetch_data_by_Name = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=2f3659e2d055859a0ba3da6e671f91f5&query=`+ e );
+    const by_Name = await fetch_data_by_Name.json();
+    setMovieByName(by_Name.results);
+  }
+
     
   const [ popular , setPopular ] = useState([]);
-  const [ sHorror , setHorror] = useState([]);
-  const [ animation , setAnimation] = useState([]);
   const [ genres , setGenres ] = useState([])
   const [ movies_by_genre , setMovieByGenre ] = useState([])
+  const [ movies_by_Name , setMovieByName ] = useState([])
  
 
 
 
-  const getinputdata = (e) => {
+  const getinputdataGenre = (e) => {
     const filtred_genre = genres.filter( (f) => f.name.toLowerCase() === e.toLowerCase() )
-    try{fetch_movies_by_genre(filtred_genre[0].id)}catch{console.log('getinput fct : no data recieved')}
+    try{fetch_movies_by_genre(filtred_genre[0].id)}catch{}
+  }
+
+  const getinputdataMovie = (e) => {
+    try{fetch_movies_by_Name(e)}catch{}
   }
 
   useEffect( () => {
     fetchPopular()
-    fetchHorror()
-    fetchAnimation()
     fetchGenres()
   } , [] )
 
   return ( 
     <>
-         <Nav data={getinputdata}/>
+         <Nav />
       
           <Routes>
-              <Route path="/Movie-Api" element={  <Searched data={movies_by_genre}/>  } />
-              <Route path="/Search" element={ <Searched  data={movies_by_genre} /> } />
+              <Route path="/Movie-Api" element={  <Popular data={popular}/>  } />
+              <Route path="/SearchByGenre" element={ <Searched  data={movies_by_genre} genre={getinputdataGenre} /> } />
               <Route path="/About" element={ <About/> } />
+              <Route path="/SearchByName" element={ <SearchedByName data={movies_by_Name}  movie={getinputdataMovie} /> } />
               <Route path="/Popular" element={ <Popular data={popular}/> } />
-              <Route path="/Horror" element={ <Horror data={sHorror} />  }  />
-              <Route path="/Animation"  element={ <Animation data={animation}/> }  />
           </Routes>
     </>
    );
