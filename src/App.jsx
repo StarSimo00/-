@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, Router, Routes } from "react-router-dom";
 import About from "./Components/About";
+import Login from "./Components/Login";
 import Nav from "./Components/Nav";
 import Popular from "./Components/Popular";
 import Searched from "./Components/Searched";
@@ -68,6 +69,7 @@ const App = () => {
               <Route path="/About" element={ <About/> } />
               <Route path="/SearchByName" element={ <SearchedByName data={movies_by_Name}  movie={getinputdataMovie} /> } />
               <Route path="/Popular" element={ <Popular data={popular}/> } />
+              <Route path="/Login" element={ <Login/> } />
           </Routes>
     </>
    );

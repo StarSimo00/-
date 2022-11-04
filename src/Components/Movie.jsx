@@ -1,5 +1,12 @@
 const Movie = ({data}) => {
-    console.log(data);
+
+
+    if( fetch('http://image.tmdb.org/t/p/original'+ data.backdrop_path) ){
+            console.log('done')
+    }else{
+        console.log('not found')
+    }
+
     return ( 
         <div className="container col-md-4 g-1 onhover" key={data.id}>
             <div className="card text-bg-dark">
