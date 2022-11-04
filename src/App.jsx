@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
-import { Route, Router, Routes } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import About from "./Components/About";
 import Login from "./Components/Login";
 import Nav from "./Components/Nav";
 import Popular from "./Components/Popular";
+import Profile from "./Components/Profile";
 import Searched from "./Components/Searched";
 import SearchedByName from "./Components/SearchedByName";
+import { UserContext } from "./contexts/UserContext";
 
 const App = () => {
 
-
+  const goto = useNavigate();
 
   const fetchPopular = async () => {
       const fetching_data_Popular = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=2f3659e2d055859a0ba3da6e671f91f5&language=en-US&page=1')
@@ -41,6 +43,8 @@ const App = () => {
   const [ genres , setGenres ] = useState([])
   const [ movies_by_genre , setMovieByGenre ] = useState([])
   const [ movies_by_Name , setMovieByName ] = useState([])
+  const [ UserName , setUser ] = useState(null)
+  const [ User , setU ] = useState(null)
  
 
 
@@ -59,19 +63,33 @@ const App = () => {
     fetchGenres()
   } , [] )
 
+
+  const login = () => {
+    setUser(User);
+    goto('/profile' , {replace : true})
+  }
+
+  const logout = () => {
+    setUser(null)
+    goto('/Movie-Api' , {replace : true})
+  }
+
   return ( 
-    <>
+  <>  
+    <UserContext.Provider value={[UserName , setUser]}>
          <Nav />
-      
           <Routes>
               <Route path="/Movie-Api" element={  <Popular data={popular}/>  } />
               <Route path="/SearchByGenre" element={ <Searched  data={movies_by_genre} genre={getinputdataGenre} /> } />
               <Route path="/About" element={ <About/> } />
               <Route path="/SearchByName" element={ <SearchedByName data={movies_by_Name}  movie={getinputdataMovie} /> } />
               <Route path="/Popular" element={ <Popular data={popular}/> } />
-              <Route path="/Login" element={ <Login/> } />
+              <Route path="/Profile" element={ <Profile  logout={logout} /> } />
+              <Route path="/Login" element={ <Login data={setU} login={login} /> } />
           </Routes>
-    </>
+          </UserContext.Provider>
+    
+  </>
    );
 }
  

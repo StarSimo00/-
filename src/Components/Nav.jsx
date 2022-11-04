@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const Nav = () => {
+
+    const [ UserName ] = useContext(UserContext)
 
     return ( 
         <div className="animate__animated animate__fadeIn">
@@ -21,12 +25,22 @@ const Nav = () => {
             <li className="nav-item">
             <NavLink className="nav-link" to={'/Popular'}>Popular</NavLink>
             </li>
+            { typeof(UserName) !== 'object'  ?
+            <li className="nav-item">
+            <NavLink className="nav-link" to={'/Profile'}>Profile</NavLink>
+            </li>
+            : ''    
+        }
             <li className="nav-item">
             <NavLink className="nav-link" to={'/About'}>About</NavLink>
             </li>
+            { UserName === null ?
             <li className="nav-item">
             <NavLink className="nav-link" to={'/Login'}>Login</NavLink>
             </li>
+            : 
+            ''
+            }
             </ul>
         </div>
         </div>
