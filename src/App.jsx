@@ -2,6 +2,7 @@ import {  useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import About from "./Components/About";
 import Login from "./Components/Login";
+import MovieDetails from "./Components/MovieDetails";
 import Nav from "./Components/Nav";
 import Popular from "./Components/Popular";
 import Profile from "./Components/Profile";
@@ -86,6 +87,7 @@ const App = () => {
               <Route path="/Popular" element={ <Popular data={popular}/> } />
               <Route path="/Profile" element={ <Profile  logout={logout} /> } />
               <Route path="/Login" element={ <Login data={setU} login={login} /> } />
+              <Route path="/Movie/:id" element={ <MovieDetails/> } />
           </Routes>
           </UserContext.Provider>
     

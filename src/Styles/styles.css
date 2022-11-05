@@ -42,3 +42,13 @@ body{
     font-size: 10px !important;
 }
 
+.detail{
+    background:  no-repeat center center fixed;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .detail {
+      height: fit-content;
+    }
+  }

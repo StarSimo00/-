@@ -2,7 +2,7 @@
 const Login = ({login , data}) => {
 
     return ( <>
-        <div className="container p-2 d-flex ">
+        <div className=" container p-2 animate__animated animate__fadeIn container p-2 d-flex ">
             <form className="container text-white p-2 ">
                 <div >
                     <label className="mx-2 my-2"> UserName : </label>

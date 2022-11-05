@@ -1,7 +1,7 @@
 import { useContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import Fav_Movies from "./Fav_Movies";
+import FavMovies from "./FavMovies";
 
 
 
@@ -20,9 +20,9 @@ const Profile = ({logout}) => {
 
     return ( 
         <>
-            <h2 className=" container ms-2 text-white d-inline" > Welcome Mr: {UserName}  </h2>
+            <h2 className=" container p-2 animate__animated animate__fadeIn container ms-2 text-white d-inline" > Welcome  {UserName}  </h2>
             <button onClick={ () => logout() } className="btn btn-secondary"> Log Out </button>
-            <Fav_Movies/>
+            <FavMovies/>
         </>
      );
 }

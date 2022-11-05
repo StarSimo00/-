@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation , Link , useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
 
@@ -24,10 +24,9 @@ const Movie = ({data}) => {
         localStorage.setItem(  data.id  , JSON.stringify(data)) 
       };
 
-      console.log(Current_Location.pathname)
 
     return ( 
-        <div className="container col-md-4 g-1 onhover" key={data.id}>
+        <div className=" container p-2 animate__animated animate__fadeIn container col-md-4 g-1 onhover" key={data.id}>
             <div className="card text-bg-dark">
                 <img src={'http://image.tmdb.org/t/p/original'+ data.backdrop_path } className="card-img zoom-in" alt="g"/>
             <div className="card-img-overlay p-4 test">
@@ -35,9 +34,17 @@ const Movie = ({data}) => {
                 <span className="card-text ms-1"><small> Rate : <i className="bi bi-star-fill"></i> {data.vote_average}</small></span>
                 <span className="card-text ms-1 d-block my-1"><small>{data.release_date}</small></span>
                 { Current_Location.pathname === '/Profile' ?  
-                 <button onClick={ () => handleDelete(data.id) } className='btn btn-outline-danger d-block'  > DELETE </button> 
+                 <div>
+                     <button onClick={ () => handleDelete(data.id) } className='btn btn-outline-danger'  > DELETE </button>
+                     <Link to={`/Movie/${data.id}`} state={{ Movie : data }} ><button className="btn btn-outline-secondary mx-1 "> Details </button></Link>
+                 </div>
                 : 
-                <button onClick={ handleClick } className={ isActive ? 'btn btn-outline-secondary d-block disabled'  :  'btn btn-outline-secondary d-block'  } > <i className="bi bi-star-fill"></i> Add To Fav !</button> 
+                <div>
+                    <button onClick={ handleClick } className={ isActive ? 'btn btn-outline-secondary disabled'  :  'btn btn-outline-secondary'  } > <i className="bi bi-star-fill"></i> Add To Fav !</button>
+                    <Link to={`/Movie/${data.id}`} state={{ Movie : data }} ><button className="btn btn-outline-secondary mx-1 "> Details </button></Link>
+
+                </div>
+
                  } 
             </div>
             </div>
