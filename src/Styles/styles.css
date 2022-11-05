@@ -42,13 +42,29 @@ body{
     font-size: 10px !important;
 }
 
+
+
+.full{
+    background : no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 .detail{
-    background:  no-repeat center center fixed;
+    height: 100%;
+    width: 100%;
+}
+
+
+.tests{
+    opacity: 1 !important ;
+    background-color: rgba(0, 0, 0, 0.763) !important;
 }
 
 
 @media only screen and (max-width: 600px) {
-    .detail {
-      height: fit-content;
+    .tests{
+        font-size: 14px;
     }
   }
