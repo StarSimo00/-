@@ -13,6 +13,7 @@ const Movie = ({data}) => {
 
     const handleDelete = (e) => {
         localStorage.removeItem(e)
+        goto('/Profile' , {replace:true})
     }
 
     const handleClick = () => {
