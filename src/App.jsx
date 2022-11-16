@@ -66,7 +66,7 @@ const App = () => {
 
   const login = () => {
     setUser(User);
-    goto('/profile' , {replace : true})
+    goto('/Movie-Api' , {replace : true})
   }
 
   const logout = () => {
@@ -81,7 +81,7 @@ const App = () => {
          <Nav />
           <Routes>
               <Route path="/Movie-Api" element={  <Popular data={popular}/>  } />
-              <Route path="/SearchByGenre" element={ <Searched  data={movies_by_genre} genre={getinputdataGenre} /> } />
+              <Route path="/SearchByGenre" element={ <Searched  data={movies_by_genre} genre={getinputdataGenre} AllGenres={genres} /> } />
               <Route path="/About" element={ <About/> } />
               <Route path="/SearchByName" element={ <SearchedByName data={movies_by_Name}  movie={getinputdataMovie} /> } />
               <Route path="/Popular" element={ <Popular data={popular}/> } />
