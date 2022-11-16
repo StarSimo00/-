@@ -26,7 +26,7 @@ const Movie = ({data}) => {
 
 
     return ( 
-        <div className=" container p-2 animate__animated animate__fadeIn container col-lg-3 col-md-6 col-sm-12 g-1 onhover" key={data.id}>
+        <div className=" container p-2 animate__animated animate__backInLeft container col-lg-3 col-md-6 col-sm-12 g-1 onhover" key={data.id}>
             <div className="card text-bg-dark">
                 <img src={'http://image.tmdb.org/t/p/original'+ data.poster_path } className="card-img zoom-in" alt="g"/>
             <div className="card-img-overlay p-4 test">
